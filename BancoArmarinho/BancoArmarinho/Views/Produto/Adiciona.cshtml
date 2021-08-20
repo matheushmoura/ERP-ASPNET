@@ -1,0 +1,104 @@
+﻿@model BancoArmarinho.Models.ProdutoModel /* tipagem, definindo com o tipo do cadastro */
+@{
+    ViewData["Title"] = "Cadastro Produto";
+}
+
+
+<div class="container-fluid">
+
+    <h3 class="alert-success">@ViewData["Menssagem"]</h3>
+    <h3>Cadastro Produto </h3>
+    <form asp-controller="Produto" asp-action="Adiciona" method="post">
+
+        <div class="form-group">
+            <input type="hidden" asp-for="Codigo" class="form-control" />
+        </div>
+
+        <div class="form-group">
+
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label asp-for="Nome"></label>
+                    <input type="text" asp-for="Nome" maxlength="35" class="form-control" required="required" />
+                    <span asp-validation-for="Nome" class="alert-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Fornecedor">Fornecedor</label>
+                    <select asp-for="Fornecedor" asp-items="@(new SelectList(ViewBag.Fornecedor, "Codigo", "Nome"))" class="form-control"></select>
+
+                    <span asp-validation-for="Fornecedor" class="alert-danger"></span>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label asp-for="Categoria"></label>
+                    <select asp-for="Categoria" asp-items="@(new SelectList(ViewBag.Categoria, "Codigo", "Nome"))" class="form-control"></select>
+                    <span asp-validation-for="Categoria" class="alert-danger"></span>
+                </div>
+                <div class="col-md-1">
+                    <label asp-for="Estoque1">Estoque</label>
+                    <input type="number" min='0' id="txtEstoque1" asp-for="Estoque1" class="form-control" />
+                    <span asp-validation-for="Estoque1" class="alert-danger"></span>
+                </div>
+                <div class="col-md-1">
+                    <label asp-for="Estoque2">Depósito</label>
+                    <input type="number" min='0' id="txtEstoque2" asp-for="Estoque2" class="form-control" />
+                    <span asp-validation-for="Estoque2" class="alert-danger"></span>
+                </div>
+                <div class="col-md-1">
+                    <label asp-for="Quantidade"></label>
+                    <input type="number" id="txtQuantidade" asp-for="Quantidade" readonly class="form-control" />
+                    <span asp-validation-for="Quantidade" class="alert-danger"></span>
+                </div>
+                <div class="col-md-2">
+                    <label asp-for="Preço"></label>
+                    <input id="txtPreço" type="text" maxlength="10" asp-for="Preço" class="form-control" required="required" />
+                    <span asp-validation-for="Preço" class="alert-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.ActionLink("Voltar", "Index", "Produto", new { }, new { @class = "btn btn-secondary" })
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+
+    </form>
+
+</div>
+@section Scripts    {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="http://digitalbush.com/wpcontent/uploads/2014/10/jquery.maskedinput.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.maskMoney.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script>
+        $(function () {
+            $('#txtPreço').maskMoney({ showSymbol: true, symbol: "R$", decimal: ",", thousands: "." });
+
+            $("#txtEstoque1").change(function () {
+                var est1 = $("#txtEstoque1").val();
+                var est2 = $("#txtEstoque2").val();
+                est1 = parseInt(est1, 10);
+                est2 = parseInt(est2, 10);
+                var est3 = est1 + est2;
+                $("#txtQuantidade").val(est3);
+            });
+            $("#txtEstoque2").change(function () {
+                var est1 = $("#txtEstoque1").val();
+                var est2 = $("#txtEstoque2").val();
+                est1 = parseInt(est1, 10);
+                est2 = parseInt(est2, 10);
+                var est3 = est1 + est2;
+                $("#txtQuantidade").val(est3);
+            });
+                
+        });
+    </script>
+}

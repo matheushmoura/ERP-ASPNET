@@ -1,0 +1,75 @@
+﻿@model IEnumerable<BancoArmarinho.Models.ItensvendidosModel>
+
+    <div class="row" style="border:1px solid #d9caca;border-radius:10px">
+        <div class="form-group row col-md-6">
+
+
+            <div class="col-md-8">
+                <label class="control-label">Produto</label>
+                <input name="nomeProduto" id="nomeProduto" type="text" class="form-control" />
+                <input id="codigoProduto" class="form-control" type="hidden" />
+
+                <label id="txtselecionado4" style="color:grey" type="hidden">  **SELECIONADO**</label>
+            </div>
+            <div class="col-md-4">
+                <label class="control-label">Qtde</label>
+                <input name="qtde" id="qtde" type="number" class="form-control" />
+            </div>
+            <br/>
+            <div class="col-md-6">
+
+                <input type="button" id="btninserir" class="btn btn-default" value="Inserir" />
+            </div>
+
+        </div>
+    </div>
+
+    <hr />
+    @if (Model != null)
+    {
+        <div class="col-md-6">
+            <table class="table table-hover" id="tprodutos">
+                <thead>
+                    <tr>
+
+                        <th>
+                            Produto
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Quantidade)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Valor)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProdutoNavigation.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantidade)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Valor)
+                        </td>
+                        <td>
+                            <input type="button" value="Excluir" class="btn btn-default" onclick="excluir(@item.Codigo)" />
+
+
+                        </td>
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+
+    }

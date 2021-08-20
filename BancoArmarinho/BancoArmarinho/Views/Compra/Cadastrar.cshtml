@@ -1,0 +1,334 @@
+﻿@model BancoArmarinho.Models.CompraModel
+
+@{
+    ViewData["Title"] = "Cadastrar Entrada";
+}
+<br />
+<h2>Entrada</h2>
+<h3 class="alert-success">@ViewData["Menssagem"]</h3>
+<h3 id="labellCOMPRAESTORNO"></h3>
+<div class="form-group">
+
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input asp-for="Codigo" class="form-control" type="hidden" value="0" />
+
+    <div class="form-group row">
+        <div class="col-md-10">
+            <label id="txtNome" class="control-label">Fornecedor</label>
+            <label id="txtcada" style="color:grey">  **cadastrar como Fornecedor**</label>
+            <input name="Nome" id="Nome" type="text" class="form-control" />
+            <input asp-for="Fornecedor" class="form-control" required="required" type="hidden" />
+            <span asp-validation-for="Fornecedor" class="text-danger"></span>
+            <label id="txtselecionado1" style="color:grey" type="hidden">  **SELECIONADO**</label>
+        </div>
+        <div class="col-md-2">
+            <label class="control-label">Fonte</label><br />
+            <input type="radio" name="Pessoa" id="Compraa" checked /> Compra &nbsp;
+            <input type="radio" name="Pessoa" id="Estorno" />Estorno
+
+
+            <input id="txtTipo" asp-for="Tipo" type="text" class="form-control" required="required" />
+            @*1 estorno. Tipo*@
+            <span asp-validation-for="Tipo" class="alert-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-12">
+            <label asp-for="Observacao" class="control-label"></label>
+            <input asp-for="Observacao" required="required" type="text" class="form-control" />
+            <span asp-validation-for="Observacao" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-2" >
+            
+            <label asp-for="Valor" class="control-label">Valor Total </label>
+            <input asp-for="Valor" id="Valor" type="text" class="form-control" />
+            <span asp-validation-for="Valor" class="text-danger"></span>
+        </div>
+        <div class="col-md-10" id="listar">
+
+            @Html.Partial("~/Views/Compraitens/ListarProdutos.cshtml", null)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="button" value="Finalizar" id="btnfinalizar" class="btn btn-success" />
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="~/lib/jquery/dist/jquery.maskMoney.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+
+@section Scripts {
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+
+
+        $(document).ready(function () {
+            $('#Valor').val(0)
+            document.getElementById('labellCOMPRAESTORNO').innerHTML = "COMPRA";
+            $('#txtcada').addClass('hidden');
+
+            $('#txtselecionado1').addClass('hidden');
+            $('#txtTipo').addClass('hidden');
+            $('#txtTipo').val("0");
+            $('#txtcada').addClass('hidden');
+            document.getElementById('txtNome').innerHTML = "Fornecedor";
+            document.getElementById('labellCOMPRAESTORNO').innerHTML = "COMPRA";
+
+            $('#Estorno').on('change', function () {
+                $('#txtTipo').val("1");
+                $('#txtcada').removeClass('hidden');
+                document.getElementById('txtNome').innerHTML = "Cliente";
+                document.getElementById('labellCOMPRAESTORNO').innerHTML = "ESTORNO";
+            })
+
+            $('#Compraa').on('change', function () {
+                $('#txtTipo').val("0");
+                $('#txtcada').addClass('hidden');
+                document.getElementById('txtNome').innerHTML = "Fornecedor";
+                document.getElementById('labellCOMPRAESTORNO').innerHTML = "COMPRA";
+            })
+
+            $("#Nome").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Fornecedor/Buscar",
+                        type: "POST",
+                        dataType: "json",
+                        data: { prefix: request.term },
+                        success: function (data) {
+
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.nome,
+                                    value: item.codigo
+                                };
+                            }))
+                        }
+                    })
+                },
+                select: function (event, ui) {
+                    event.preventDefault();
+                    $(this).val(ui.item.label);
+                    $("#Fornecedor").val(ui.item.value);
+                    $("#txtselecionado1").removeClass('hidden');
+                }
+            });
+
+            $("#btnfinalizar").on('click', function () {
+                finalizar();
+            });
+
+            inicializarPartialView();
+
+        });
+
+        function finalizar() {
+            $.ajax({
+                type: "GET",
+                url: "/Compra/finalizar?codigo=" + $('#Codigo').val(),
+                contentType: "application/json; charset=utf-8",
+                data: {},
+                dataType: "json",
+                success: function (jsonResult) {
+
+                    if (jsonResult) {
+                        alert("Dados salvos. Nota lançada!");
+
+                        
+
+                        $("#Compraa").prop("checked", true);
+                        $('#txtTipo').val("0");
+                        $('#txtcada').addClass('hidden');
+                        document.getElementById('txtNome').innerHTML = "Fornecedor";
+                        document.getElementById('labellCOMPRAESTORNO').innerHTML = "COMPRA";
+
+                        $('#txtselecionado1').addClass('hidden');
+                        $('#Codigo').val(0);
+                        $("#tprodutos").empty();
+                        $('#Fornecedor').val("");
+                        $('#Nome').val("");
+                        $('#Valor').val("0");
+                        $('#Observacao').val("");
+                    }
+                    else {
+                        alert("Erro ao salvar.");
+                    }
+
+
+
+                },
+                failure: function (response) {
+                    alert("Erro ao carregar os dados: " + response);
+                }
+            })
+
+        }
+
+        function inicializarPartialView() {
+            $('#txtselecionado2').addClass('hidden');
+            $("#nomeProduto").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Produto/Buscar",
+                        type: "POST",
+                        dataType: "json",
+                        data: { prefix: request.term },
+                        success: function (data) {
+
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.nome,
+                                    value: item.codigo
+                                };
+                            }))
+                        }
+
+                    })
+                },
+                select: function (event, ui) {
+                    event.preventDefault();
+                    $(this).val(ui.item.label);
+                    $("#codigoProduto").val(ui.item.value);
+                    $('#txtselecionado2').removeClass('hidden');
+
+                }
+            });
+
+            $("#btninserir").on("click", function () {
+
+                $('#txtselecionado2').addClass('hidden');
+                if ($('#Codigo').val() == "0") {
+                    inserirPedido();
+                }
+                else
+                    inserirPedidoItem();
+            });
+        }
+
+        function inserirPedido() {
+            var model = {
+                codigo: 0,
+                data: null,
+                status: "I",
+                observacao: $('#Observacao').val(),
+                tipo: $('#txtTipo').val(),
+                valor:parseFloat($('#Valor').val()),
+                fornecedor: $('#Fornecedor').val()
+            };
+            console.log(JSON.stringify(model));
+            $.ajax({
+                type: "POST",
+                url: "/Compra/salvar",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(model),
+                dataType: "json",
+                success: function (jsonResult) {
+                    console.log(jsonResult);
+                    if (jsonResult != null) {
+
+                        $('#Codigo').val(jsonResult.codigo);
+                        inserirPedidoItem();
+                    }
+                    else {
+                        alert("Erro ao salvar..");
+
+                    }
+                },
+                failure: function (response) {
+                    alert("Erro ao carregar os dados: " + response);
+                }
+            })
+
+        }
+
+
+        function inserirPedidoItem() {
+            var model = {
+                codigo: 0,
+                ccompra: parseInt($("#Codigo").val()),
+                prodcod: parseInt($("#codigoProduto").val()),
+                prodcodNavigation: null,
+                cquant: parseInt($('#qtde').val()),
+            };
+            console.log(JSON.stringify(model));
+            $.ajax({
+                type: "POST",
+                url: "/Compraitens/salvar",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(model),
+                dataType: "json",
+                success: function (jsonResult) {
+                    console.log(jsonResult);
+                    if (jsonResult != null) {
+                        listarItens();
+                    }
+                    else {
+                        alert("Erro ao salvar.2");
+                    }
+
+                },
+                failure: function (response) {
+                    alert("Erro ao carregar os dados: " + response);
+                }
+            })
+
+        }
+
+        function listarItens() {
+            $.ajax({
+                type: "GET",
+                url: "/Compraitens/ListarProdutos?codigo=" + $("#Codigo").val(),
+                contentType: "application/json; charset=utf-8",
+                data: {},
+                dataType: "html",
+                success: function (jsonResult) {
+                    $("#listar").empty();
+                    $("#listar").html(jsonResult);
+                    $("#listar").show();
+                    inicializarPartialView();
+                },
+                failure: function (response) {
+                    alert("Erro ao carregar os dados: " + response);
+                }
+            })
+
+        }
+
+        function excluir(codigo) {
+            $.ajax({
+                type: "GET",
+                url: "/Compraitens/excluir?codigo=" + codigo,
+                contentType: "application/json; charset=utf-8",
+                data: {},
+                dataType: "json",
+                success: function (jsonResult) {
+
+                    if (jsonResult != null) {
+                        alert("Dados excluidos!");
+                        listarItens();
+                    }
+                    else {
+                        alert("Erro ao excluir!");
+                    }
+                },
+                failure: function (response) {
+                    alert("Erro ao carregar os dados: " + response);
+                }
+            })
+
+        }
+    </script>
+}

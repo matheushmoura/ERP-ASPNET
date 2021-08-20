@@ -1,0 +1,49 @@
+﻿@model IEnumerable<BancoArmarinho.Models.FornecedorModel> /* passagem de parametro pra a view, passei a lista de categorias */
+@{
+    ViewData["Title"] = "Relatório de Fornecedores";
+}
+<h3 class="alert-success">@ViewData["Mensagem"]</h3>
+<br />
+<h3>Relatório de Fornecedores: </h3>
+<br />
+<div style="overflow-y: scroll; height:400px; ">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(i => i.Nome)</th>
+                <th>@Html.DisplayNameFor(i => i.Cnpj)</th>
+                <th>@Html.DisplayNameFor(i => i.Cidade)</th>
+                <th>@Html.DisplayNameFor(i => i.Estado)</th>
+                <th>@Html.DisplayNameFor(i => i.Situacao)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (FornecedorModel item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(itemModel => item.Nome)</td>
+                    <td>@Html.DisplayFor(itemModel => item.Cnpj)</td>
+                    <td>@Html.DisplayFor(itemModel => item.Cidade)</td>
+                    <td>@Html.DisplayFor(itemModel => item.Estado)</td>
+                    @if (item.Situacao == true)
+                    {
+                        <td>
+                            @Html.ActionLink("Ativo", "Ativadesativa", "Fornecedor", new { id = item.Codigo }, new { @class = "btn btn-success btn-block" })
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.ActionLink("Inativo", "Ativadesativa", "Fornecedor", new { id = item.Codigo }, new { @class = "btn btn btn-danger btn-block" })
+                        </td>
+                    }
+                    <td>
+                        @Html.ActionLink("Visualizar", "Visualiza", "Fornecedor", new { id = item.Codigo }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Alterar", "Adiciona", "Fornecedor", new { id = item.Codigo }, new { @class = "btn btn-warning" })
+                        @*@Html.ActionLink("Excluir", "Excluir", "Fornecedor", new { id = item.Codigo }, new { @class = "btn btn-danger", onclick = "return confirm ('Deseja Excluir?')" })*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>

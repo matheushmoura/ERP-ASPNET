@@ -1,0 +1,125 @@
+﻿@model BancoArmarinho.Models.ClienteModel /* tipagem, definindo com o tipo do cadastro */
+@{
+    ViewData["Title"] = "Cliente";
+}
+
+    <div class="container-fluid" >
+        <h3>Cliente           @ViewData["Menssagem"]</h3>
+
+        <form asp-controller="Cliente" asp-action="Visualiza" >
+
+            <div class="form-group">
+                <input type="hidden" asp-for="Codigo" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Nome"></label>
+                <input type="text" readonly asp-for="Nome" maxlength="85" class="form-control" />
+                <span asp-validation-for="Nome" class="alert-danger"></span>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label id="labelCPFCNPJ">
+                            <div id="labellCPFCNPJ"> </div>
+                        </label>
+                        <input type="text" readonly id="txtDocumento" asp-for="Documento" class="form-control" />
+                        <span asp-validation-for="Documento" class="alert-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+
+                        <label id="labelInscricaoestadual" asp-for="Inscricaoestadual"></label>
+                        <input type="text" readonly id="Inscricaoestadual" maxlength="18" onkeypress="return event.charCode >=45 && event.charCode <=57" asp-for="Inscricaoestadual" class="form-control" />
+                        <span asp-validation-for="Inscricaoestadual" class="alert-danger"></span>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+
+                        <label asp-for="Cep"></label>
+                        <input id="txtCEP" readonly type="text" asp-for="Cep" class="form-control" />
+                        <span asp-validation-for="Cep" class="alert-danger"></span>
+                    </div>
+                    <div class="col-md-9">
+                        <label asp-for="Endereço"></label>
+                        <input id="txtEndereço" readonly type="text" asp-for="Endereço" class="form-control" />
+                        <span asp-validation-for="Endereço" class="alert-danger"></span>
+                    </div>
+                    <div class="col-md-1">
+                        <label asp-for="Numero"></label>
+                        <input id="txtNumero" type="text" readonly maxlength="5" onkeypress="return event.charCode >=48 && event.charCode <=57" asp-for="Numero" class="form-control" />
+                        <span asp-validation-for="Numero" class="alert-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label asp-for="Bairro"></label>
+                        <input id="txtBairro" type="text" readonly asp-for="Bairro" class="form-control" />
+                        <span asp-validation-for="Bairro" class="alert-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Complemento"></label>
+                        <input id="txtComplemento" type="text" readonly maxlength="20" asp-for="Complemento" class="form-control" />
+                        <span asp-validation-for="Complemento" class="alert-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <label asp-for="Cidade"></label>
+                        <input id="txtCidade" type="text" readonly asp-for="Cidade" class="form-control" />
+                        <span asp-validation-for="Cidade" class="alert-danger"></span>
+                    </div>
+                    <div class="col-md-1">
+                        <label asp-for="Estado"></label>
+                        <input id="txtEstado" type="text" asp-for="Estado" readonly class="form-control" />
+                        <span asp-validation-for="Estado" class="alert-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="Telefone"></label>
+                        <input id="txtTelefone" type="text" readonly asp-for="Telefone" class="form-control" />
+                        <span asp-validation-for="Telefone" class="alert-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="Telefone2"></label>
+                        <input id="txtTelefone2" type="text" readonly asp-for="Telefone2" class="form-control" />
+                        <span asp-validation-for="Telefone2" class="alert-danger"></span>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+
+            <div class="form-group">
+                @Html.ActionLink("Voltar", "Index", "Cliente", new { }, new { @class = "btn btn-secondary" })
+            </div>
+
+        </form>
+
+    </div>
+
+@section Scripts    {
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="http://digitalbush.com/wpcontent/uploads/2014/10/jquery.maskedinput.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+
+<script>
+    $(function () {
+
+        $("#txtDocumento").mask('00.000.000/0000-00', { reverse: false });
+        $("#txtCEP").mask('00000-000', { reverse: false });
+        $("#txtTelefone").mask('(00)000000009', { reverse: false });
+
+        $("#txtTelefone2").mask('(00)000000009', { reverse: false });
+        document.getElementById('labellCPFCNPJ').innerHTML = "CNPJ";
+
+    
+
+    });
+    </script>
+}

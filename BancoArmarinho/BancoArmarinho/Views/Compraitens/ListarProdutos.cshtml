@@ -1,0 +1,64 @@
+﻿@model IEnumerable<BancoArmarinho.Models.CompraitensModel>
+
+<div class="row" style="border:1px solid #d9caca;border-radius:10px">
+    <div class="form-group row col-md-6 ">
+        
+
+        <div class="col-md-6">
+            <label class="control-label">Produto</label>
+            <input name="nomeProduto" id="nomeProduto" type="text" class="form-control" />
+            <input name="codigoProduto" id="codigoProduto" class="form-control" type="hidden" />
+
+            <label id="txtselecionado2" style="color:grey" type="hidden">  **SELECIONADO**</label>
+        </div>
+        <div class="col-md-6">
+            <label class="control-label">Qtde</label>
+            <input name="qtde" id="qtde" type="text" class="form-control" />
+        </div>
+        <br/>
+        <div class="col-md-12">
+
+            <input type="button" id="btninserir" class="btn btn-default" value="Inserir" />
+        </div>
+
+    </div>
+</div>
+
+<hr />
+@if (Model != null)
+{
+    <div class="col-md-12">
+        <table class="table table-hover" id="tprodutos">
+            <thead>
+                <tr>
+
+                    <th>
+                        Produto
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Cquant)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProdcodNavigation.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cquant)
+                        </td>
+                        <td>
+                            <input type="button" value="Excluir" class="btn btn-default" onclick="excluir(@item.Ccompra)" />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+}

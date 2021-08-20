@@ -1,0 +1,47 @@
+﻿@model IEnumerable<BancoArmarinho.Models.UsuarioModel> /* passagem de parametro pra a view, passei a lista de categorias */
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewData["Title"] = "Relatório de Usuarios";
+}
+
+<h3 class="alert-success">@ViewData["Mensagem"]</h3>
+<br />
+<h3>Relatório de Usuarios: </h3>
+<br />
+<div style="overflow-y: scroll; height:400px; ">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(i => i.Usuario1)</th>
+                <th>@Html.DisplayNameFor(i => i.Permissao)</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (UsuarioModel item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(itemModel => item.Usuario1)</td>
+                    @if (item.Permissao == 1)
+                    {
+                        <td>Administrador</td>
+                    }
+                    @if (item.Permissao == 2)
+                    {
+                        <td>Vendedor</td>
+                    }
+                    @if (item.Permissao == 3)
+                    {
+                        <td>Financeiro</td>
+                    }
+                    <td>@Html.ActionLink("Alterar", "Adiciona", "Usuario", new { id = item.Codigo }, new { @class = "btn btn-primary" })</td>
+                    @if (item.Usuario1 != @Context.Request.HttpContext.Session.GetString("Usuario"))
+                    {
+
+                        <td>@Html.ActionLink("Excluir", "Excluir", "Usuario", new { id = item.Codigo }, new { @class = "btn btn-primary", onclick = "return confirm ('Deseja Excluir?')" })</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>

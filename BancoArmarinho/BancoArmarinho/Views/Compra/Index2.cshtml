@@ -1,0 +1,58 @@
+﻿@model IEnumerable<BancoArmarinho.Models.CompraModel>
+@using Microsoft.AspNetCore.Http;
+@using BancoArmarinho.Models;
+
+@{
+    ViewData["Title"] = "Estornos";
+}
+
+<h2>Lista de Estornos</h2>
+<div style="overflow-y: scroll; height:450px; ">
+    <table id="myTable" class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Codigo)
+                </th>
+                <th>
+                    Fornecedor
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Data)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Valor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Observacao)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FornecedorNavigation.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valor)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Observacao)
+                </td>
+
+
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

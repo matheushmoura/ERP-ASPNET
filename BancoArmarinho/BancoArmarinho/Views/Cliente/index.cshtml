@@ -1,0 +1,56 @@
+﻿@model IEnumerable<BancoArmarinho.Models.ClienteModel>
+   
+    @{
+    ViewData["Title"] = "Relatório Clientes";
+    }
+    <h3 class="alert-success">@ViewData["Mensagem"]</h3>
+    <br />
+    <h3>Relatório de Clientes: </h3>
+    <br />
+    <div style="overflow-y: scroll; height:400px; ">
+        <table class="table">
+            <thead>
+                <tr>
+
+                    <th>@Html.DisplayNameFor(i => i.Nome)</th>
+                    <th>@Html.DisplayNameFor(i => i.Documento)</th>
+                    <th>@Html.DisplayNameFor(i => i.Cidade)</th>
+                    <th>@Html.DisplayNameFor(i => i.Estado)</th>
+                    <th>@Html.DisplayNameFor(i => i.Pontos)</th>
+                    <th>@Html.DisplayNameFor(i => i.Situacao)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ClienteModel item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(itemModel => item.Nome)</td>
+                        <td>@Html.DisplayFor(itemModel => item.Documento)</td>
+                        <td>@Html.DisplayFor(itemModel => item.Cidade)</td>
+                        <td>@Html.DisplayFor(itemModel => item.Estado)</td>
+                        <td>@Html.DisplayFor(itemModel => item.Pontos)</td>
+                        @if (item.Situacao == true)
+                        {
+                            <td>
+                                @Html.ActionLink("Ativo", "Ativadesativa", "Cliente", new { id = item.Codigo }, new { @class = "btn btn-success btn-block" })
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                @Html.ActionLink("Inativo", "Ativadesativa", "Cliente", new { id = item.Codigo }, new { @class = "btn btn btn-danger btn-block" })
+                            </td>
+                        }
+
+
+                        <td>
+                            @Html.ActionLink("Visualizar", "Visualiza", "Cliente", new { id = item.Codigo }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Alterar", "Adiciona", "Cliente", new { id = item.Codigo }, new { @class = "btn btn-warning" })
+
+                            @*@Html.ActionLink("Excluir", "Excluir", "Cliente", new { id = item.Codigo }, new { @class = "btn btn-danger", onclick = "return confirm ('Deseja Excluir?')" })*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>

@@ -1,0 +1,150 @@
+﻿@using Microsoft.AspNetCore.Http;
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>@ViewData["Title"] - Promóveis</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+    <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body style="background-color:#F1F2F1 ;"> 
+    <nav class="navbar navbar-expand-lg navbar-light rounded-0 navbar-fixed-top" style="background-color:#D9D9D6;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Promóveis</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <nav class="navbar-nav mr-auto">
+                    @* Relatórios *@
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Relatórios
+                        </a>
+                        <div class="dropdown-menu">
+                            <a asp-area="" class="nav-link" asp-controller="Fornecedor" asp-action="Index">Fornecedor</a>
+                            <a asp-area="" class="nav-link" asp-controller="Cliente" asp-action="Index">Cliente</a>
+                            <a asp-area="" class="nav-link" asp-controller="Categoria" asp-action="Index">Categoria</a>
+                            <a asp-area="" class="nav-link" asp-controller="Produto" asp-action="Index">Produto</a>
+                            <a asp-area="" class="nav-link" asp-controller="Usuario" asp-action="Index">Usuario</a>
+                            <a asp-area="" class="nav-link" asp-controller="Compra" asp-action="index">Compras</a>
+                            <a asp-area="" class="nav-link" asp-controller="Compra" asp-action="index2">Estornos</a>
+                            <a asp-area="" class="nav-link" asp-controller="Venda" asp-action="index">Venda</a>
+
+                        </div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    @*Cadastro*@
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Cadastro
+                        </a>
+                        <div class="dropdown-menu">
+                            <a asp-area="" class="nav-link" asp-controller="Fornecedor" asp-action="Adiciona">Fornecedor</a>
+                            <a asp-area="" class="nav-link" asp-controller="Cliente" asp-action="Adiciona">Cliente</a>
+                            <a asp-area="" class="nav-link" asp-controller="Categoria" asp-action="ADiciona">Categoria</a>
+                            <a asp-area="" class="nav-link" asp-controller="Produto" asp-action="Adiciona">Produto</a>
+                            <a asp-area="" class="nav-link" asp-controller="Usuario" asp-action="Adiciona">Usuario</a>
+
+
+                        </div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    @*Conta Pagar*@
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Pagar e Receber
+                        </a>
+                        <div class="dropdown-menu">
+                         <a asp-area="" class="nav-link" asp-controller="ContaPagar" asp-action="Adiciona">Adicionar a Pagar</a>
+                         <a asp-area="" class="nav-link" asp-controller="ContaPagar" asp-action="index">Relatorio Contas a Pagar</a>
+                         <a asp-area="" class="nav-link" asp-controller="Venda" asp-action="index">Relatorio de Contas a Receber</a>
+
+                    </div>
+                    </div>
+                    @*Movimentação*@
+                    <div class="dropdown-divider"></div>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Movimentação
+                        </a>
+                        <div class="dropdown-menu">
+                            <a asp-area="" class="nav-link" asp-controller="Venda" asp-action="Create">Venda</a>
+                            <a asp-area="" class="nav-link" asp-controller="Compra" asp-action="Cadastrar">Compra</a>
+                            <a asp-area="" class="nav-link" asp-controller="Compra" asp-action="Cadastrar">Estorno</a>
+                        </div>
+                    </div>
+
+
+                </nav>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <a class="nav-link"><span class="glyphicon glyphicon-user"></span>  @Context.Request.HttpContext.Session.GetString("Usuario") </a> &ensp;
+                <a  asp-area="" class="nav-link" asp-controller="Usuario" asp-action="Logout"><span class="glyphicon glyphicon-log-in"></span> Sair</a>
+            </ul>
+        </div>
+        
+        @*<div class="nav navbar-nav" align="right">
+            <ul>
+                <li> <a class="nav-link" asp-controller="Usuario" asp-action="Logout"> @Context.Request.HttpContext.Session.GetString("Usuario") | Sair </a></li>
+            </ul>
+        </div>*@
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr /> 
+        <footer class="footer">
+            <p>&copy; Promóveis Móveis Para Escritório LTDA-ME</p>
+        </footer>
+    </div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

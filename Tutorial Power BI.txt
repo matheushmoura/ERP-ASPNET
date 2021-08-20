@@ -1,0 +1,2 @@
+Para funcionar o relatório do PowerBI conforme a atualizações que fizer no banco de dados que está na sua maquina, é necessário instalar o PowerBI e rodar o arquivo que estou mandando junto. POrém o relatório não vai atualizar no iframe que está no html, pois o iframe é carregado pela conta que eu cadastrei no powerBI, conforme o gateway que liguei com o meu banco de dados do meu computador. 
+Então para abri-lo, instalar o power BI e abrir o arquivo TCC.

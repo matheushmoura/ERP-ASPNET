@@ -1,0 +1,47 @@
+C:\Users\Matheus Moura\source\repos\BancoArmarinho\Repositorio\bin\Debug\netcoreapp2.0\Repositorio.deps.json
+C:\Users\Matheus Moura\source\repos\BancoArmarinho\Repositorio\bin\Debug\netcoreapp2.0\Repositorio.dll
+C:\Users\Matheus Moura\source\repos\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.csprojAssemblyReference.cache
+C:\Users\Matheus Moura\source\repos\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.csproj.CoreCompileInputs.cache
+C:\Users\Matheus Moura\source\repos\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.AssemblyInfoInputs.cache
+C:\Users\Matheus Moura\source\repos\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.AssemblyInfo.cs
+C:\Users\Matheus Moura\source\repos\BancoArmarinho\Repositorio\bin\Debug\netcoreapp2.0\Repositorio.runtimeconfig.json
+C:\Users\Matheus Moura\source\repos\BancoArmarinho\Repositorio\bin\Debug\netcoreapp2.0\Repositorio.runtimeconfig.dev.json
+C:\Users\Matheus Moura\source\repos\BancoArmarinho\Repositorio\bin\Debug\netcoreapp2.0\Repositorio.pdb
+C:\Users\Matheus Moura\source\repos\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.dll
+C:\Users\Matheus Moura\source\repos\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.pdb
+C:\Users\Matheus\Desktop\repos\BancoArmarinho\Repositorio\bin\Debug\netcoreapp2.0\Repositorio.deps.json
+C:\Users\Matheus\Desktop\repos\BancoArmarinho\Repositorio\bin\Debug\netcoreapp2.0\Repositorio.runtimeconfig.json
+C:\Users\Matheus\Desktop\repos\BancoArmarinho\Repositorio\bin\Debug\netcoreapp2.0\Repositorio.runtimeconfig.dev.json
+C:\Users\Matheus\Desktop\repos\BancoArmarinho\Repositorio\bin\Debug\netcoreapp2.0\Repositorio.dll
+C:\Users\Matheus\Desktop\repos\BancoArmarinho\Repositorio\bin\Debug\netcoreapp2.0\Repositorio.pdb
+C:\Users\Matheus\Desktop\repos\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.csprojAssemblyReference.cache
+C:\Users\Matheus\Desktop\repos\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.csproj.CoreCompileInputs.cache
+C:\Users\Matheus\Desktop\repos\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.AssemblyInfoInputs.cache
+C:\Users\Matheus\Desktop\repos\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.AssemblyInfo.cs
+C:\Users\Matheus\Desktop\repos\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.dll
+C:\Users\Matheus\Desktop\repos\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.pdb
+C:\Users\Matheus\Desktop\repos\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.genruntimeconfig.cache
+C:\Users\Matheus\Desktop\MatheusMoura\BancoArmarinho\Repositorio\bin\Debug\netcoreapp2.0\Repositorio.deps.json
+C:\Users\Matheus\Desktop\MatheusMoura\BancoArmarinho\Repositorio\bin\Debug\netcoreapp2.0\Repositorio.runtimeconfig.json
+C:\Users\Matheus\Desktop\MatheusMoura\BancoArmarinho\Repositorio\bin\Debug\netcoreapp2.0\Repositorio.runtimeconfig.dev.json
+C:\Users\Matheus\Desktop\MatheusMoura\BancoArmarinho\Repositorio\bin\Debug\netcoreapp2.0\Repositorio.dll
+C:\Users\Matheus\Desktop\MatheusMoura\BancoArmarinho\Repositorio\bin\Debug\netcoreapp2.0\Repositorio.pdb
+C:\Users\Matheus\Desktop\MatheusMoura\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.csprojAssemblyReference.cache
+C:\Users\Matheus\Desktop\MatheusMoura\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.AssemblyInfoInputs.cache
+C:\Users\Matheus\Desktop\MatheusMoura\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.AssemblyInfo.cs
+C:\Users\Matheus\Desktop\MatheusMoura\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.csproj.CoreCompileInputs.cache
+C:\Users\Matheus\Desktop\MatheusMoura\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.dll
+C:\Users\Matheus\Desktop\MatheusMoura\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.pdb
+C:\Users\Matheus\Desktop\MatheusMoura\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.genruntimeconfig.cache
+C:\Users\Matheus\Desktop\BancoArmarinho\Repositorio\bin\Debug\netcoreapp2.0\Repositorio.deps.json
+C:\Users\Matheus\Desktop\BancoArmarinho\Repositorio\bin\Debug\netcoreapp2.0\Repositorio.runtimeconfig.json
+C:\Users\Matheus\Desktop\BancoArmarinho\Repositorio\bin\Debug\netcoreapp2.0\Repositorio.runtimeconfig.dev.json
+C:\Users\Matheus\Desktop\BancoArmarinho\Repositorio\bin\Debug\netcoreapp2.0\Repositorio.dll
+C:\Users\Matheus\Desktop\BancoArmarinho\Repositorio\bin\Debug\netcoreapp2.0\Repositorio.pdb
+C:\Users\Matheus\Desktop\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.csprojAssemblyReference.cache
+C:\Users\Matheus\Desktop\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.AssemblyInfoInputs.cache
+C:\Users\Matheus\Desktop\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.AssemblyInfo.cs
+C:\Users\Matheus\Desktop\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.csproj.CoreCompileInputs.cache
+C:\Users\Matheus\Desktop\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.dll
+C:\Users\Matheus\Desktop\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.pdb
+C:\Users\Matheus\Desktop\BancoArmarinho\Repositorio\obj\Debug\netcoreapp2.0\Repositorio.genruntimeconfig.cache

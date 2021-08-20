@@ -1,0 +1,30 @@
+﻿@model IEnumerable<BancoArmarinho.Models.CategoriaModel> /* passagem de parametro pra a view, passei a lista de categorias */
+@{
+    ViewData["Title"] = "Relatório Categorias";
+}
+<br/>
+
+
+<h3>Categorias: </h3><h3 class="alert-success">@ViewData["Menssagem"]</h3>
+
+@Html.ActionLink("Novo", "ADiciona", "Categoria", new { }, new { @class = "btn btn-primary" })
+
+<div style="overflow-y: scroll; height:400px; ">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(i => i.Nome)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (CategoriaModel item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(itemModel => item.Nome)</td>
+                    <td>@Html.ActionLink("Alterar", "ADiciona", "Categoria", new { id = item.Codigo }, new { @class = "btn btn-warning" })</td>
+                    @*@Html.ActionLink("Excluir", "Excluir", "Categoria", new { id = item.Codigo }, new { @class = "btn btn-primary", onclick="return confirm ('Deseja Excluir?')"})*@
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<BancoArmarinho.Models.VendaModel>
+@using Microsoft.AspNetCore.Http;
+@using BancoArmarinho.Models;
+
+@{
+    ViewData["Title"] = "Relatório Venda";
+}
+
+<h2>Relatório de Vendas</h2>
+<div style="overflow-y: scroll; " >
+    <iframe width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=13ff8a85-3472-4009-98bf-f2aa59705045&autoAuth=true&ctid=2f0c6133-a744-43a4-8166-10b0986c98c4&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWJyYXppbC1zb3V0aC1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D" frameborder="0" allowFullScreen="true"></iframe>
+    <table id="myTable" class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Codigo)
+                </th>
+                <th>
+                    Cliente
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Data)
+                </th>
+                <th>
+                    Cidade
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Valor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Desconto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Total)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Codigo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ClienteNavigation.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Data)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ClienteNavigation.Cidade)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Valor)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Desconto)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total)
+                    </td>
+
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

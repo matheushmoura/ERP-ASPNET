@@ -1,0 +1,50 @@
+﻿@model IEnumerable<BancoArmarinho.Models.ProdutoModel> /* passagem de parametro pra a view, passei a lista de categorias */
+@{
+    ViewData["Title"] = "Relatório de Produtos";
+}
+
+<h3 class="alert-success">@ViewData["Mensagem"]</h3>
+<br />
+<h3>Relatório de Produtos: </h3>
+<br />
+<div style="overflow-y: scroll; height:400px; ">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(i => i.Nome)</th>
+                <th>@Html.DisplayNameFor(i => i.Quantidade)</th>
+                <th>Showroom</th>
+                <th>Depósito</th>
+                <th>@Html.DisplayNameFor(i => i.Preço)</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ProdutoModel item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(itemModel => item.Nome)</td>
+                    <td>@Html.DisplayFor(itemModel => item.Quantidade)</td>
+                    <td>
+                        @Html.DisplayFor(itemModel => item.Estoque1)
+                        @*@Html.ActionLink("-", "Diminui1", "Produto", new { id = item.Codigo }, new { @class = "btn btn-primary" })*@
+                        @*  @Html.ActionLink("+", "Aumenta1", "Produto", new { id = item.Codigo }, new { @class = "btn btn-primary" })*@
+                    </td>
+                    <td>
+                        @Html.DisplayFor(itemModel => item.Estoque2)
+                        @*     @Html.ActionLink("-", "Diminui2", "Produto", new { id = item.Codigo }, new { @class = "btn btn-primary" })*@
+                        @*   @Html.ActionLink("+", "Aumenta2", "Produto", new { id = item.Codigo }, new { @class = "btn btn-primary" })*@
+                    </td>
+                    <td>@Html.DisplayFor(itemModel => item.Preço)</td>
+
+
+                    <td>
+                        @*@Html.ActionLink("Visualizar", "Visualiza", "Produto", new { id = item.Codigo }, new { @class = "btn btn-primary" })*@
+                        @Html.ActionLink("Alterar", "Adiciona", "Produto", new { id = item.Codigo }, new { @class = "btn btn-warning" })
+                        @*@Html.ActionLink("Excluir", "Excluir", "Produto", new { id = item.Codigo }, new { @class = "btn btn-danger", onclick = "return confirm ('Deseja Excluir?')" })*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
